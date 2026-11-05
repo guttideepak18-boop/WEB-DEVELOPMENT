@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HealthCare Hospital</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f9fc;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #087e8b;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffdd57;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(120deg, #087e8b, #35b7c4);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .banner h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            font-size: 18px;
+        }
+
+        .banner button {
+            background: white;
+            color: #087e8b;
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Common Sections */
+        section {
+            padding: 40px 7%;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #087e8b;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        /* Departments */
+        .department-grid,
+        .doctor-grid,
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ccc;
+        }
+
+        .card h3 {
+            color: #087e8b;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        /* Doctors */
+        .doctor img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* Specialties */
+        .specialties {
+            background: #e0f7fa;
+            line-height: 2.2;
+        }
+
+        /* Visiting Hours */
+        .hours {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 3px 10px #ccc;
+            line-height: 2;
+        }
+
+        /* Emergency */
+        .emergency {
+            background: #ffe5e5;
+            padding: 30px;
+            color: #b30000;
+            border-radius: 10px;
+        }
+
+        .emergency h2 {
+            color: #b30000;
+        }
+
+        .emergency a {
+            color: #b30000;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        /* Appointment Form */
+        .appointment {
+            background: white;
+            max-width: 650px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ccc;
+            text-align: left;
+        }
+
+        .appointment label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .appointment input,
+        .appointment select,
+        .appointment textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .appointment button {
+            background: #087e8b;
+            color: white;
+            padding: 13px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .appointment button:hover {
+            background: #055b65;
+        }
+
+        /* Footer */
+        footer {
+            background: #064e56;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .department-grid,
+            .doctor-grid,
+            .facility-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            .banner h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .department-grid,
+            .doctor-grid,
+            .facility-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            .banner h2 {
+                font-size: 24px;
+            }
+
+            section {
+                padding: 30px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🏥 HealthCare Hospital</h1>
+
+        <nav aria-label="Main navigation">
+            <a href="#">Home</a>
+            <a href="#departments">Departments</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#appointment">Appointment</a>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <h2>Welcome to HealthCare Hospital</h2>
+        <p>Your Health, Our Priority</p>
+        <p>Quality Treatment and Best Medical Care</p>
+
+        <button onclick="location.href='#appointment'">
+            Book Appointment
+        </button>
+    </section>
+
+    <!-- Departments -->
+    <section id="departments">
+        <h2>Our Departments</h2>
+
+        <div class="department-grid">
+
+            <div class="card">
+                <h3>❤️ Cardiology</h3>
+                <p>Special care for heart-related problems.</p>
+            </div>
+
+            <div class="card">
+                <h3>🧠 Neurology</h3>
+                <p>Treatment for brain and nerve disorders.</p>
+            </div>
+
+            <div class="card">
+                <h3>🦴 Orthopedics</h3>
+                <p>Care for bones, joints and muscles.</p>
+            </div>
+
+            <div class="card">
+                <h3>👶 Pediatrics</h3>
+                <p>Medical care for babies and children.</p>
+            </div>
+
+            <div class="card">
+                <h3>👁️ Ophthalmology</h3>
+                <p>Special treatment for eye problems.</p>
+            </div>
+
+            <div class="card">
+                <h3>🩺 General Medicine</h3>
+                <p>Diagnosis and treatment of common illnesses.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Doctors -->
+    <section id="doctors">
+        <h2>Our Expert Doctors</h2>
+
+        <div class="doctor-grid">
+
+            <div class="card doctor">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300" alt="Doctor">
+                <h3>Dr. Rajesh Kumar</h3>
+                <p>Cardiologist</p>
+                <p>Experience: 12 Years</p>
+            </div>
+
+            <div class="card doctor">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300" alt="Doctor">
+                <h3>Dr. Priya Sharma</h3>
+                <p>Neurologist</p>
+                <p>Experience: 10 Years</p>
+            </div>
+
+            <div class="card doctor">
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300" alt="Doctor">
+                <h3>Dr. Arjun Reddy</h3>
+                <p>Orthopedic Specialist</p>
+                <p>Experience: 8 Years</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Specialties -->
+    <section class="specialties">
+        <h2>Our Specialties</h2>
+
+        <p>✔ Advanced Heart Care</p>
+        <p>✔ Brain and Nerve Treatment</p>
+        <p>✔ Child Healthcare</p>
+        <p>✔ Bone and Joint Treatment</p>
+        <p>✔ General Health Checkups</p>
+    </section>
+
+    <!-- Facilities -->
+    <section id="facilities">
+        <h2>Hospital Facilities</h2>
+
+        <div class="facility-grid">
+
+            <div class="card">
+                <h3>🚑 Ambulance</h3>
+                <p>24/7 emergency ambulance service.</p>
+            </div>
+
+            <div class="card">
+                <h3>🛏️ Patient Rooms</h3>
+                <p>Comfortable rooms for patients.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔬 Laboratory</h3>
+                <p>Modern diagnostic laboratory facilities.</p>
+            </div>
+
+            <div class="card">
+                <h3>💊 Pharmacy</h3>
+                <p>Medical store for prescribed medicines.</p>
+            </div>
+
+            <div class="card">
+                <h3>🩻 X-Ray</h3>
+                <p>Advanced medical imaging services.</p>
+            </div>
+
+            <div class="card">
+                <h3>🏥 ICU</h3>
+                <p>Intensive care for critical patients.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Visiting Hours -->
+    <section>
+        <h2>Visiting Hours</h2>
+
+        <div class="hours">
+            <p><b>Monday - Saturday:</b> 10:00 AM - 7:00 PM</p>
+            <p><b>Sunday:</b> 10:00 AM - 1:00 PM</p>
+            <p><b>Emergency:</b> 24 Hours</p>
+        </div>
+    </section>
+
+    <!-- Emergency Contact -->
+    <section>
+        <div class="emergency">
+            <h2>🚨 Emergency Contact</h2>
+            <p>For emergency medical assistance, contact us.</p>
+            <p>Emergency Number:</p>
+            <a href="tel:108">108</a>
+            <p>Hospital Help Desk: 9876543210</p>
+        </div>
+    </section>
+
+    <!-- Appointment Form -->
+    <section id="appointment">
+        <h2>Book an Appointment</h2>
+
+        <form class="appointment" onsubmit="bookAppointment(event)">
+
+            <label for="name">Patient Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone"
+                   placeholder="Enter phone number"
+                   pattern="[0-9]{10}" required>
+
+            <label for="department">Select Department:</label>
+            <select id="department" required>
+                <option value="">Choose Department</option>
+                <option>Cardiology</option>
+                <option>Neurology</option>
+                <option>Orthopedics</option>
+                <option>Pediatrics</option>
+                <option>Ophthalmology</option>
+                <option>General Medicine</option>
+            </select>
+
+            <label for="date">Appointment Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" rows="4"
+                      placeholder="Enter your message"></textarea>
+
+            <button type="submit">Submit Appointment</button>
+
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>HealthCare Hospital</h3>
+        <p>Providing Quality Healthcare for Everyone</p>
+        <p>Email: healthcare@example.com</p>
+        <p>© 2026 HealthCare Hospital. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function bookAppointment(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let department = document.getElementById("department").value;
+            let date = document.getElementById("date").value;
+
+            alert(
+                "Appointment Request Submitted Successfully!\n" +
+                "Patient Name: " + name +
+                "\nDepartment: " + department +
+                "\nDate: " + date
+            );
+
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
