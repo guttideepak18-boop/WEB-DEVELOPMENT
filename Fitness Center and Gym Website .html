@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PowerFit Gym</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        /* Navigation Bar */
+        header {
+            background: #000;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            color: #ff4500;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(
+                rgba(0,0,0,0.65),
+                rgba(0,0,0,0.65)
+            ),
+            url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400")
+            center/cover;
+
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h2 {
+            font-size: 55px;
+            font-weight: 900;
+            color: #ff4500;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        button {
+            background: #ff4500;
+            color: white;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: white;
+            color: #ff4500;
+            transform: scale(1.05);
+        }
+
+        .hero button {
+            margin-top: 25px;
+        }
+
+        /* Common Sections */
+        section {
+            padding: 50px 7%;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #ff4500;
+            font-size: 35px;
+            margin-bottom: 30px;
+            font-weight: 900;
+        }
+
+        /* Workout Programs */
+        .program-grid,
+        .trainer-grid,
+        .facility-grid,
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #222;
+            padding: 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 20px #ff4500;
+        }
+
+        .card h3 {
+            color: #ff4500;
+            margin: 15px 0;
+            font-size: 22px;
+        }
+
+        .card p {
+            line-height: 1.7;
+        }
+
+        /* Trainers */
+        .trainer img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Pricing */
+        .price {
+            font-size: 30px;
+            color: #ff4500;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .pricing-grid .card ul {
+            list-style: none;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .popular {
+            border: 2px solid #ff4500;
+        }
+
+        /* Facilities */
+        .facility-grid .card {
+            font-size: 18px;
+        }
+
+        /* Class Schedule */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #222;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #555;
+        }
+
+        th {
+            background: #ff4500;
+            color: white;
+        }
+
+        tr:hover {
+            background: #333;
+        }
+
+        /* Registration Form */
+        .registration {
+            max-width: 600px;
+            margin: auto;
+            background: #222;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .registration label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .registration input,
+        .registration select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .registration button {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 17px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 25px;
+            color: white;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .program-grid,
+            .trainer-grid,
+            .facility-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 38px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .program-grid,
+            .trainer-grid,
+            .facility-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            .hero h2 {
+                font-size: 30px;
+            }
+
+            section {
+                padding: 35px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <h1>💪 POWERFIT GYM</h1>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#programs">Programs</a>
+            <a href="#trainers">Trainers</a>
+            <a href="#membership">Membership</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#register">Join Us</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>BUILD YOUR STRENGTH</h2>
+        <p>Train Hard. Stay Strong. Live Healthy.</p>
+
+        <button onclick="location.href='#register'">
+            Join Now
+        </button>
+    </section>
+
+    <!-- Workout Programs -->
+    <section id="programs">
+        <h2>Workout Programs</h2>
+
+        <div class="program-grid">
+
+            <div class="card">
+                <h3>🏋️ Strength Training</h3>
+                <p>Improve strength with guided weight training exercises.</p>
+            </div>
+
+            <div class="card">
+                <h3>🏃 Cardio Training</h3>
+                <p>Improve heart health and overall fitness.</p>
+            </div>
+
+            <div class="card">
+                <h3>🧘 Yoga</h3>
+                <p>Improve flexibility, balance and relaxation.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔥 HIIT Training</h3>
+                <p>High-intensity interval training with trainer guidance.</p>
+            </div>
+
+            <div class="card">
+                <h3>🤸 Zumba</h3>
+                <p>Enjoy fitness through fun dance workouts.</p>
+            </div>
+
+            <div class="card">
+                <h3>💪 Personal Training</h3>
+                <p>Individual workout guidance from expert trainers.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Trainers -->
+    <section id="trainers">
+        <h2>Our Expert Trainers</h2>
+
+        <div class="trainer-grid">
+
+            <div class="card trainer">
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=300" alt="Fitness trainer">
+                <h3>Rahul Kumar</h3>
+                <p>Strength Training Coach</p>
+                <p>Experience: 8 Years</p>
+            </div>
+
+            <div class="card trainer">
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=300" alt="Fitness trainer">
+                <h3>Priya Sharma</h3>
+                <p>Yoga Trainer</p>
+                <p>Experience: 6 Years</p>
+            </div>
+
+            <div class="card trainer">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=300" alt="Fitness trainer">
+                <h3>Arjun Reddy</h3>
+                <p>Fitness Coach</p>
+                <p>Experience: 5 Years</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Membership Plans -->
+    <section id="membership">
+        <h2>Membership Plans</h2>
+
+        <div class="pricing-grid">
+
+            <div class="card">
+                <h3>Basic Plan</h3>
+                <p class="price">₹999</p>
+                <p>Per Month</p>
+
+                <ul>
+                    <li>✔ Gym Access</li>
+                    <li>✔ Basic Equipment</li>
+                    <li>✔ Locker Facility</li>
+                </ul>
+
+                <button onclick="selectPlan('Basic Plan')">
+                    Choose Plan
+                </button>
+            </div>
+
+            <div class="card popular">
+                <h3>Standard Plan</h3>
+                <p class="price">₹1,999</p>
+                <p>Per Month</p>
+
+                <ul>
+                    <li>✔ Gym Access</li>
+                    <li>✔ Personal Guidance</li>
+                    <li>✔ Group Classes</li>
+                    <li>✔ Locker Facility</li>
+                </ul>
+
+                <button onclick="selectPlan('Standard Plan')">
+                    Choose Plan
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Premium Plan</h3>
+                <p class="price">₹2,999</p>
+                <p>Per Month</p>
+
+                <ul>
+                    <li>✔ All Gym Facilities</li>
+                    <li>✔ Personal Trainer</li>
+                    <li>✔ All Group Classes</li>
+                    <li>✔ Premium Support</li>
+                </ul>
+
+                <button onclick="selectPlan('Premium Plan')">
+                    Choose Plan
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Facilities -->
+    <section id="facilities">
+        <h2>Gym Facilities</h2>
+
+        <div class="facility-grid">
+
+            <div class="card">
+                <h3>🏋️ Modern Equipment</h3>
+                <p>Well-maintained gym equipment.</p>
+            </div>
+
+            <div class="card">
+                <h3>🚿 Changing Rooms</h3>
+                <p>Clean changing rooms and lockers.</p>
+            </div>
+
+            <div class="card">
+                <h3>💧 Drinking Water</h3>
+                <p>Clean drinking water facilities.</p>
+            </div>
+
+            <div class="card">
+                <h3>❄️ AC Gym</h3>
+                <p>Comfortable workout environment.</p>
+            </div>
+
+            <div class="card">
+                <h3>🧘 Yoga Studio</h3>
+                <p>Separate space for yoga classes.</p>
+            </div>
+
+            <div class="card">
+                <h3>🚗 Parking</h3>
+                <p>Convenient vehicle parking facility.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Class Schedule -->
+    <section id="schedule">
+        <h2>Class Schedule</h2>
+
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Day</th>
+                    <th>Class</th>
+                    <th>Time</th>
+                    <th>Trainer</th>
+                </tr>
+
+                <tr>
+                    <td>Monday</td>
+                    <td>Yoga</td>
+                    <td>6:00 AM</td>
+                    <td>Priya</td>
+                </tr>
+
+                <tr>
+                    <td>Tuesday</td>
+                    <td>Cardio</td>
+                    <td>7:00 AM</td>
+                    <td>Rahul</td>
+                </tr>
+
+                <tr>
+                    <td>Wednesday</td>
+                    <td>Zumba</td>
+                    <td>5:00 PM</td>
+                    <td>Priya</td>
+                </tr>
+
+                <tr>
+                    <td>Thursday</td>
+                    <td>Strength Training</td>
+                    <td>6:00 AM</td>
+                    <td>Arjun</td>
+                </tr>
+
+                <tr>
+                    <td>Friday</td>
+                    <td>HIIT</td>
+                    <td>6:00 PM</td>
+                    <td>Rahul</td>
+                </tr>
+
+                <tr>
+                    <td>Saturday</td>
+                    <td>Yoga</td>
+                    <td>7:00 AM</td>
+                    <td>Priya</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="register">
+        <h2>Gym Registration</h2>
+
+        <form class="registration" onsubmit="registerMember(event)">
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name"
+                   placeholder="Enter your name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email"
+                   placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone"
+                   placeholder="Enter 10 digit number"
+                   pattern="[0-9]{10}" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age"
+                   min="13" max="100"
+                   placeholder="Enter your age" required>
+
+            <label for="plan">Select Membership:</label>
+            <select id="plan" required>
+                <option value="">Choose Plan</option>
+                <option>Basic Plan</option>
+                <option>Standard Plan</option>
+                <option>Premium Plan</option>
+            </select>
+
+            <label for="program">Select Workout Program:</label>
+            <select id="program" required>
+                <option value="">Choose Program</option>
+                <option>Strength Training</option>
+                <option>Cardio Training</option>
+                <option>Yoga</option>
+                <option>HIIT Training</option>
+                <option>Zumba</option>
+                <option>Personal Training</option>
+            </select>
+
+            <button type="submit">
+                Register Now
+            </button>
+
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>POWERFIT GYM</h2>
+        <p>Train Hard. Stay Strong.</p>
+        <p>Contact: 9876543210</p>
+        <p>Email: powerfit@example.com</p>
+        <p>© 2026 PowerFit Gym. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+
+        function selectPlan(plan) {
+            document.getElementById("plan").value = plan;
+
+            document.getElementById("register").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        function registerMember(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let plan = document.getElementById("plan").value;
+            let program = document.getElementById("program").value;
+
+            alert(
+                "Registration Successful!\n" +
+                "Name: " + name +
+                "\nMembership: " + plan +
+                "\nWorkout Program: " + program
+            );
+
+            event.target.reset();
+        }
+
+    </script>
+
+</body>
+</html>
